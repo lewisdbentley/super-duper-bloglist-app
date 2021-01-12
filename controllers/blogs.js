@@ -1,7 +1,6 @@
 const blogRouter = require('express').Router()
 const Blog = require('../models/blog')
 const User = require('../models/user')
-const logger = require('../utils/logger')
 const jwt = require('jsonwebtoken')
 
 blogRouter.get('/', async (request, response) => {
@@ -19,7 +18,7 @@ blogRouter.post('/', async (request, response) => {
   if (!request.token) {
     return response
       .status(401)
-      .json({ error: "we couldn't identify you - missing token." })
+      .json({ error: 'we couldn\'t identify you - missing token.' })
   }
 
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
@@ -27,7 +26,7 @@ blogRouter.post('/', async (request, response) => {
   if (!decodedToken) {
     return response
       .status(401)
-      .json({ error: "we couldn't identify you - invalid token." })
+      .json({ error: 'we couldn\'t identify you - invalid token.' })
   }
 
   if (!body.title || !body.url) {
@@ -82,9 +81,9 @@ blogRouter.delete('/:id', async (request, response) => {
   console.log('userIsOwner', userIsOwner)
 
   userIsOwner === false
-    ? response.status(401).json({ error: "you're not the owner of that blog" })
+    ? response.status(401).json({ error: 'you\'re not the owner of that blog' })
     : // if OK, delete blog
-      (await Blog.findByIdAndDelete(request.params.id)) &&
+    (await Blog.findByIdAndDelete(request.params.id)) &&
       response.status(204).end()
 })
 

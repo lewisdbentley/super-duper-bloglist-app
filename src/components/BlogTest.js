@@ -1,8 +1,8 @@
+/* eslint-disable no-undef */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
-
 
 describe('blog', () => {
   let component
@@ -10,15 +10,13 @@ describe('blog', () => {
     title: 'ben',
     author: 'jamin',
     url: 'www.frank.com',
-    likes: 2
+    likes: 2,
   }
 
   const mockHandler = jest.fn()
 
   beforeEach(() => {
-    component = render(
-      < Blog blog={blog} submitLike={mockHandler}/>
-    )
+    component = render(<Blog blog={blog} submitLike={mockHandler} />)
   })
 
   test('renders blogs title and author', () => {
@@ -47,7 +45,6 @@ describe('blog', () => {
   })
 
   test('registers likes button clicked multiple times', () => {
-
     const button = component.getByText('like')
 
     fireEvent.click(button) && fireEvent.click(button)

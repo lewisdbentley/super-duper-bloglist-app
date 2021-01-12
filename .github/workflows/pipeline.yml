@@ -11,10 +11,34 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  hello_world_job:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Say hello
+        run: |
+          echo "Hello World!"
+
+jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: npm install
+        run: npm install
+
+      - name: lint
+        run: npm run eslint
+
+      - name: test
+        run: npm run test
+
+      - name: build
+        run: npm run build
 
       - name: deploy to prod
         # if: github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip')

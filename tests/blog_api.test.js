@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const app = require('../app')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
@@ -141,7 +142,7 @@ describe('initial blogs in db', () => {
     const response = await api.post('/api/blogs').send(newBlog).expect(401)
 
     expect(response.body.error).toContain(
-      "we couldn't identify you - missing token."
+      'we couldn\'t identify you - missing token.'
     )
 
     const blogsAtEnd = await helper.blogsInDb()
