@@ -18,7 +18,6 @@ jobs:
         run: |
           echo "Hello World!"
 
-jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
     steps:
