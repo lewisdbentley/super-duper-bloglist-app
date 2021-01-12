@@ -1,7 +1,0 @@
-Creating OAuth Authorization... done
-Client:      <none>
-ID:          78f719a4-b019-4720-88a2-d6698ea45854
-Description: Long-lived user authorization
-Scope:       global
-Token:       5a9841a4-7ae6-40c1-835b-bf56e3e611b5
-Updated at:  Tue Jan 12 2021 16:31:05 GMT+0000 (Greenwich Mean Time) (less than a minute ago)
