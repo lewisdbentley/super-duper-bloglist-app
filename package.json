@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "start": "NODE_ENV=production node index.js",
-    "test": "NODE_ENV=test TEST_MONGODB_URI=mongodb+srv://lewisdbentley:tycoon90@cluster0.qnuen.mongodb.net/<blog-app-test>?retryWrites=true&w=majority SECRET=secret jest --verbose --runInBand",
+    "test": "NODE_ENV=test SECRET=verysecret jest --verbose --runInBand",
     "eslint": "eslint './**/*.{js,jsx}'"
   },
   "author": "Lewis Bentley",
