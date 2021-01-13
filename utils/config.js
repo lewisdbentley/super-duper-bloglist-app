@@ -13,6 +13,8 @@ if (PORT == null || PORT == '') {
   PORT = 5000
 }
 
+console.log('MONGODB_URI', MONGODB_URI)
+
 module.exports = {
   MONGODB_URI,
   PORT,
