@@ -13,6 +13,8 @@ const mongoose = require('mongoose')
 
 app.use(express.static('dist'))
 
+console.log('config', config)
+
 mongoose
   .connect(config.MONGODB_URI, {
     useNewUrlParser: true,
