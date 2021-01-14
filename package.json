@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "start": "NODE_ENV=production node index.js",
-    "test": "NODE_ENV=test SECRET=verysecret jest --verbose --runInBand",
+    "test": "NODE_ENV=test jest --verbose --runInBand",
     "eslint": "eslint './**/*.{js,jsx}'",
     "start:test": "NODE_ENV=test node index.js",
     "cypress:open": "cypress open",

@@ -13,7 +13,6 @@ on:
 jobs:
   hello_mona_the_octocat_job:
     runs-on: ubuntu-18.04
-    steps:
       steps:
         - name: Hello world
           run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
@@ -24,32 +23,32 @@ jobs:
 
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
+      steps:
+        - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+        - uses: actions/setup-node@v1
+          with:
+            node-version: '12.x'
 
-      - name: npm install
-        run: npm install
+        - name: npm install
+          run: npm install
 
-      - name: lint
-        run: npm run eslint
+        - name: lint
+          run: npm run eslint
 
-      - name: test
-        run: npm run test
-        env:
-          TEST_MONGODB_URI: secrets.TEST_MONGODB_URI
-          SECRET: secrets.SECRET
+        - name: test
+          run: npm run test
+          env:
+            TEST_MONGODB_URI: secrets.TEST_MONGODB_URI
+            SECRET: secrets.SECRET
 
-      - name: build
-        run: npm run build
+        - name: build
+          run: npm run build
 
-      - name: deploy to prod
-        if: github.event_name == 'push'
-        uses: akhileshns/heroku-deploy@v3.8.8 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'super-duper-bloglist-app' #Must be unique in Heroku
-          heroku_email: 'lewisdbentley@gmail.com'
+        - name: deploy to prod
+          if: github.event_name == 'push'
+          uses: akhileshns/heroku-deploy@v3.8.8 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: 'super-duper-bloglist-app' #Must be unique in Heroku
+            heroku_email: 'lewisdbentley@gmail.com'
