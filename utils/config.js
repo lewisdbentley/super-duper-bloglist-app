@@ -8,6 +8,12 @@ if (process.env.NODE_ENV === 'test') {
   MONGODB_URI = process.env.TEST_MONGODB_URI
 }
 
+const collectCoverageFrom = [
+  '!src/**/*.{js}',
+  '!cypress/integration/*.js',
+  'tests/**/*.{js}',
+]
+
 console.log('inside config: MONGODB_URI=', MONGODB_URI)
 
 // eslint-disable-next-line eqeqeq
@@ -19,4 +25,5 @@ module.exports = {
   MONGODB_URI,
   PORT,
   SECRET,
+  collectCoverageFrom,
 }

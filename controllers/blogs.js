@@ -18,7 +18,7 @@ blogRouter.post('/', async (request, response) => {
   if (!request.token) {
     return response
       .status(401)
-      .json({ error: 'we couldn\'t identify you - missing token.' })
+      .json({ error: 'we couldnt identify you - missing token.' })
   }
 
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
@@ -26,7 +26,7 @@ blogRouter.post('/', async (request, response) => {
   if (!decodedToken) {
     return response
       .status(401)
-      .json({ error: 'we couldn\'t identify you - invalid token.' })
+      .json({ error: 'we couldnt identify you - invalid token.' })
   }
 
   if (!body.title || !body.url) {
@@ -80,10 +80,10 @@ blogRouter.delete('/:id', async (request, response) => {
   console.log('blog.user._id', typeof blog.user._id)
   console.log('userIsOwner', userIsOwner)
 
+  // if OK, delete blog
   userIsOwner === false
-    ? response.status(401).json({ error: 'you\'re not the owner of that blog' })
-    : // if OK, delete blog
-    (await Blog.findByIdAndDelete(request.params.id)) &&
+    ? response.status(401).json({ error: 'youre not the owner of that blog' })
+    : (await Blog.findByIdAndDelete(request.params.id)) &&
       response.status(204).end()
 })
 
