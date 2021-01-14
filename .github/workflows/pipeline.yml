@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Hello world
-        run: echo 'Hello world $FIRST_NAME $middle_name $Last_Name!''
+        run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
         env:
           FIRST_NAME: Mona
           middle_name: The
@@ -39,8 +39,8 @@ jobs:
       - name: test
         run: npm run test
         env:
-          TEST_MONGODB_URI: secrets.TEST_MONGODB_URI
-          SECRET: secrets.SECRET
+          TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
+          SECRET: ${{secrets.SECRET}}
 
       - name: build
         run: npm run build
