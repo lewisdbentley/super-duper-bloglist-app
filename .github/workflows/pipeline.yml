@@ -11,12 +11,16 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  hello_world_job:
+  hello_mona_the_octocat_job:
     runs-on: ubuntu-18.04
     steps:
-      - name: Say hello
-        run: |
-          echo "Hello World!"
+      steps:
+        - name: Hello world
+          run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+          env:
+            FIRST_NAME: Mona
+            middle_name: The
+            Last_Name: Octocat
 
   simple_deployment_pipeline:
     runs-on: ubuntu-18.04
@@ -34,7 +38,10 @@ jobs:
         run: npm run eslint
 
       - name: test
-        run: npm run test TEST_MONGODB_URI=secrets.TEST_MONGODB_URI
+        run: npm run test
+        env:
+          TEST_MONGODB_URI: secrets.TEST_MONGODB_URI
+          SECRET: secrets.SECRET
 
       - name: build
         run: npm run build
