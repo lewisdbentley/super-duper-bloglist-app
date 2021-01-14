@@ -8,7 +8,9 @@
     "build": "webpack --mode production",
     "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=test SECRET=verysecret jest --verbose --runInBand",
-    "eslint": "eslint './**/*.{js,jsx}'"
+    "eslint": "eslint './**/*.{js,jsx}'",
+    "start:test": "NODE_ENV=test node index.js",
+    "cypress:open": "cypress open"
   },
   "author": "Lewis Bentley",
   "license": "ISC",
@@ -36,7 +38,9 @@
     "@babel/preset-react": "^7.9.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "cypress": "^6.2.1",
     "eslint": "^7.6.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^24.1.3",
     "eslint-plugin-react": "^7.22.0",
     "html-loader": "^1.1.0",

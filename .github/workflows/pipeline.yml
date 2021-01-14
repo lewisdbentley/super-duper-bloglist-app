@@ -34,7 +34,7 @@ jobs:
         run: npm run eslint
 
       - name: test
-        run: npm run test
+        run: npm run test TEST_MONGODB_URI=secrets.TEST_MONGODB_URI
 
       - name: build
         run: npm run build
