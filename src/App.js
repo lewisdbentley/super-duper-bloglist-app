@@ -71,7 +71,7 @@ const App = () => {
     setMessage(message)
     setTimeout(() => {
       setMessage('')
-    }, 5000)
+    }, 15000)
   }
 
   const successMessage = {
@@ -98,7 +98,11 @@ const App = () => {
 
   return (
     <div>
-      {message === '' ? null : <p style={styledMessage}>{message}</p>}
+      {message === '' ? null : (
+        <p id="message" style={styledMessage}>
+          {message}
+        </p>
+      )}
 
       <h2>Blogs</h2>
 

@@ -9,12 +9,25 @@ describe('bloglist', function () {
       password: 'green',
     }
     cy.request('POST', 'http://localhost:5000/api/users/', user)
-    cy.visit(`http://localhost:${config.PORT}'`)
+    cy.visit(`http://localhost:${config.PORT}`)
   })
 
   it('front page can be opened', function () {
     cy.contains('Blogs')
     cy.contains('An application to store and rate blogs.')
+  })
+
+  it('login fails with wrong password', function () {
+    cy.contains('login').click()
+    cy.get('#username').type('Lime')
+    cy.get('#password').type('grün')
+    cy.get('#login-button').click()
+
+    cy.get('#message')
+      .should('contain', 'invalid user credentials')
+      .and('have.css', 'color', 'rgb(255, 0, 0)')
+
+    cy.get('html').should('not.contain', 'Lime logged in')
   })
 
   it('user can log in', function () {

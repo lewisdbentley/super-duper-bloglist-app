@@ -24,14 +24,16 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+const config = require('../../utils/config')
+
 // eslint-disable-next-line no-unused-vars
 Cypress.Commands.add('login', ({ username, password }) => {
-  cy.request('POST', 'http://localhost:5000/api/login', {
+  cy.request('POST', `http://localhost:${config.PORT}/api/login`, {
     username: 'Lime',
     password: 'green',
   }).then((response) => {
     localStorage.setItem('loggedBlogUser', JSON.stringify(response.body))
-    cy.visit('http://localhost:8080')
+    cy.visit(`http://localhost:${config.PORT}`)
   })
 })
 
@@ -39,7 +41,7 @@ Cypress.Commands.add(
   'createBlog',
   ({ title = 'title', author = 'author', url = 'url' }) => {
     cy.request({
-      url: 'http://localhost:5000/api/blogs',
+      url: `http://localhost:${config.PORT}/api/blogs`,
       method: 'POST',
       body: { title, author, url },
       headers: {
@@ -49,6 +51,6 @@ Cypress.Commands.add(
       },
     })
 
-    cy.visit('http://localhost:8080')
+    cy.visit(`http://localhost:${config.PORT}`)
   }
 )
