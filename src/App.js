@@ -14,7 +14,7 @@ const App = () => {
   const [message, setMessage] = useState('')
   const [success, setSuccess] = useState(false)
 
-  console.log('inside app')
+  console.log('inside App')
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs))
@@ -52,10 +52,11 @@ const App = () => {
   const addBlog = async (blogObject) => {
     blogFormRef.current.toggleVisibility()
     try {
-      await blogService.create(blogObject)
+      const createdBlog = await blogService.create(blogObject)
+      setBlogs([...blogs, createdBlog])
       displayMessage('successfully created a new blog entry', true)
     } catch (exception) {
-      displayMessage('something went wrong with posting a blog', false)
+      displayMessage(exception.message)
     }
   }
 
@@ -63,18 +64,6 @@ const App = () => {
     window.localStorage.clear()
     setUser(null)
     displayMessage('logged out', false)
-  }
-
-  let blog
-
-  const submitLike = () => {
-    blogService.update({
-      title: blog.title,
-      url: blog.url,
-      likes: blog.likes + 1,
-      author: blog.author,
-      id: blog.id,
-    })
   }
 
   const displayMessage = (message, outcome) => {
@@ -105,6 +94,8 @@ const App = () => {
 
   const blogFormRef = React.createRef()
 
+  if (!blogs) return null
+
   return (
     <div>
       {message === '' ? null : <p style={styledMessage}>{message}</p>}
@@ -123,7 +114,7 @@ const App = () => {
         </Togglable>
       ) : (
         <p>
-          {user.username} logged in{' '}
+          {user.username} logged in
           <button onClick={handleLogout}>logout</button>
         </p>
       )}
@@ -133,7 +124,7 @@ const App = () => {
       </Togglable>
 
       {blogsSortedByLikes.map((blog) => (
-        <Blog key={blog.id} blog={blog} submitLike={submitLike} />
+        <Blog key={blog.id} data={blog} setBlogs={setBlogs} blogs={blogs} />
       ))}
     </div>
   )

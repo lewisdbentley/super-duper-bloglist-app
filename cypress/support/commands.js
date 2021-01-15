@@ -23,3 +23,32 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// eslint-disable-next-line no-unused-vars
+Cypress.Commands.add('login', ({ username, password }) => {
+  cy.request('POST', 'http://localhost:5000/api/login', {
+    username: 'Lime',
+    password: 'green',
+  }).then((response) => {
+    localStorage.setItem('loggedBlogUser', JSON.stringify(response.body))
+    cy.visit('http://localhost:8080')
+  })
+})
+
+Cypress.Commands.add(
+  'createBlog',
+  ({ title = 'title', author = 'author', url = 'url' }) => {
+    cy.request({
+      url: 'http://localhost:5000/api/blogs',
+      method: 'POST',
+      body: { title, author, url },
+      headers: {
+        Authorization: `bearer ${
+          JSON.parse(localStorage.getItem('loggedBlogUser')).token
+        }`,
+      },
+    })
+
+    cy.visit('http://localhost:8080')
+  }
+)
