@@ -1,13 +1,15 @@
+const config = require('./utils/config')
+
 describe('bloglist', function () {
   beforeEach(function () {
-    cy.request('POST', 'http://localhost:5000/api/tests/reset')
+    cy.request('POST', `http://localhost:${config.PORT}/api/tests/reset`)
     const user = {
       name: 'Lewis Bentley',
       username: 'Lime',
       password: 'green',
     }
     cy.request('POST', 'http://localhost:5000/api/users/', user)
-    cy.visit('http://localhost:8080')
+    cy.visit(`http://localhost:${config.PORT}'`)
   })
 
   it('front page can be opened', function () {
