@@ -49,11 +49,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start:test
-          start: npm run dev
+          start: npm run start
           wait-on: http://localhost:5000
-          wait-on: http://localhost:8080
-          
         env:
           TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
           SECRET: ${{secrets.SECRET}}
