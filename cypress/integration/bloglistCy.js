@@ -1,4 +1,4 @@
-const config = require('./utils/config')
+const config = require('../../utils/config')
 
 describe('bloglist', function () {
   beforeEach(function () {
